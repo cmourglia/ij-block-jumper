@@ -2,18 +2,30 @@
     <id>com.github.cmourglia.ijblockjumper</id>
     <name>ij-block-jumper</name>
     <vendor>cmourglia</vendor>
+    <description>Jump across paragraphs (whitespace delimited blocks). More or less equivalent to 'C-]' in vim.
+        There is no key binding by default, search for BlockJumper in the actions to set them. There are four actions:
+         - BlockJumper.JumpForward
+         - BlockJumper.JumpBackward
+         - BlockJumper.JumpSelectForward
+         - BlockJumper.JumpSelectBackward
+    </description>
+    <change-notes>Initial version</change-notes>
+    <version>0.0.1</version>
 
     <!-- Product and plugin compatibility requirements -->
     <!-- https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.cmourglia.ijblockjumper.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.cmourglia.ijblockjumper.services.MyProjectService"/>
     </extensions>
 
-    <applicationListeners>
-        <listener class="com.github.cmourglia.ijblockjumper.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </applicationListeners>
+    <actions>
+        <group id="BlockJumper.BlockJumpAction" text="Block Jump">
+<!--            <add-to-group group-id="MainMenu" anchor="last" />-->
+            <action class="com.github.cmourglia.blockjumper.JumpForwardAction" id="BlockJumper.Actions.JumpForwardAction" text="Forward" />
+            <action class="com.github.cmourglia.blockjumper.JumpBackwardAction" id="BlockJumper.Actions.JumpBackwardAction" text="Backward" />
+            <action class="com.github.cmourglia.blockjumper.JumpSelectForwardAction" id="BlockJumper.Actions.JumpSelectForwardAction" text="Select Forward" />
+            <action class="com.github.cmourglia.blockjumper.JumpSelectBackwardAction" id="BlockJumper.Actions.JumpSelectBackwardAction" text="Select Backward" />
+        </group>
+    </actions>
 </idea-plugin>
