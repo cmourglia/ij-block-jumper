@@ -1,0 +1,45 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>com.github.cmourglia.ijblockjumper</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>Block Jumper</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor email="charly.mourglia@gmail.com" url="https://github.com/cmourglia/ij-block-jumper">Charly Mourglia</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+    <description>Jump across paragraphs (whitespace delimited blocks). More or less equivalent to 'C-]' in vim.
+        There is no key binding by default, search for BlockJumper in the actions to set them. There are four actions:
+        - BlockJumper.JumpForward
+        - BlockJumper.JumpBackward
+        - BlockJumper.JumpSelectForward
+        - BlockJumper.JumpSelectBackward
+    </description>
+    
+    <change-notes>Update block jumper for new products</change-notes>
+    <version>1.0.0</version>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+    </extensions>
+
+    <actions>
+        <group id="BlockJumper.BlockJumpAction" text="Block Jump">
+            <!--            <add-to-group group-id="MainMenu" anchor="last" />-->
+            <action class="com.github.cmourglia.ijblockjumper.JumpForwardAction" id="BlockJumper.Actions.JumpForwardAction" text="Forward" />
+            <action class="com.github.cmourglia.ijblockjumper.JumpBackwardAction" id="BlockJumper.Actions.JumpBackwardAction" text="Backward" />
+            <action class="com.github.cmourglia.ijblockjumper.JumpSelectForwardAction" id="BlockJumper.Actions.JumpSelectForwardAction" text="Select Forward" />
+            <action class="com.github.cmourglia.ijblockjumper.JumpSelectBackwardAction" id="BlockJumper.Actions.JumpSelectBackwardAction" text="Select Backward" />
+        </group>
+    </actions>
+</idea-plugin>
