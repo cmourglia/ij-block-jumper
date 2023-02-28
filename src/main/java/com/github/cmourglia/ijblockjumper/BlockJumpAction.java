@@ -6,6 +6,8 @@ import com.intellij.openapi.editor.*;
 import com.intellij.openapi.util.TextRange;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+
 public class BlockJumpAction {
     private static boolean isWhitespace(String str) {
         final int length = str.length();
@@ -46,12 +48,14 @@ public class BlockJumpAction {
 
     public static void moveCaret(@NotNull AnActionEvent event, boolean backward, boolean select) {
         Editor editor = event.getRequiredData(CommonDataKeys.EDITOR);
-        Caret caret = editor.getCaretModel().getPrimaryCaret();
+        List<Caret> carets = editor.getCaretModel().getAllCarets();
         Document document = editor.getDocument();
 
-        int currentLine = caret.getLogicalPosition().line;
-        int nextLine = findNextSpaceLine(document, caret, backward);
-        int offset = nextLine - currentLine;
-        caret.moveCaretRelatively(0, offset, select, true);
+        for (Caret caret: carets) {
+            int currentLine = caret.getLogicalPosition().line;
+            int nextLine = findNextSpaceLine(document, caret, backward);
+            int offset = nextLine - currentLine;
+            caret.moveCaretRelatively(0, offset, select, true);
+        }
     }
 }
