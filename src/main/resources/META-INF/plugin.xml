@@ -27,7 +27,7 @@
   <li>Support multi-caret</li>
 </ul>
 ]]></change-notes>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 
     <!-- Product and plugin compatibility requirements.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
